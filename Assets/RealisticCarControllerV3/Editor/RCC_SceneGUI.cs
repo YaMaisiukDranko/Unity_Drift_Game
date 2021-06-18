@@ -1,4 +1,13 @@
-﻿using UnityEditor;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using UnityEditor;
 using UnityEngine;
 
 public class RCC_SceneGUI : EditorWindow{
@@ -37,14 +46,22 @@ public class RCC_SceneGUI : EditorWindow{
 	public static void Enable(){
 
 		GetImages ();
+		#if UNITY_2019_1_OR_NEWER
 		SceneView.duringSceneGui += OnScene;
+		#else
+		SceneView.onSceneGUIDelegate += OnScene;
+		#endif
 
 	}
 
 	[MenuItem("Tools/BoneCracker Games/Realistic Car Controller/Disable In-Scene Buttons", false, 5000)]
 	public static void Disable(){
 		
+		#if UNITY_2019_1_OR_NEWER
 		SceneView.duringSceneGui -= OnScene;
+		#else
+		SceneView.onSceneGUIDelegate -= OnScene;
+		#endif
 
 	}
 

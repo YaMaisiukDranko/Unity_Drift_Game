@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RCC_Settings
   m_EditorClassIdentifier: 
   controllerSelectedIndex: 0
-  behaviorSelectedIndex: 2
-  overrideBehavior: 1
+  behaviorSelectedIndex: 0
+  overrideBehavior: 0
   overrideFPS: 1
   overrideFixedTimeStep: 1
   fixedTimeStep: 0.02
@@ -27,6 +27,8 @@ MonoBehaviour:
   - behaviorName: Simulator
     steeringHelper: 1
     tractionHelper: 1
+    angularDragHelper: 1
+    counterSteering: 1
     ABS: 1
     ESP: 1
     TCS: 1
@@ -36,6 +38,8 @@ MonoBehaviour:
     highSpeedSteerAngleMaximum: 60
     highSpeedSteerAngleAtspeedMinimum: 0
     highSpeedSteerAngleAtspeedMaximum: 350
+    counterSteeringMinimum: 0.1
+    counterSteeringMaximum: 1
     steerHelperAngularVelStrengthMinimum: 0.1
     steerHelperAngularVelStrengthMaximum: 0.1
     steerHelperLinearVelStrengthMinimum: 0.1
@@ -45,18 +49,22 @@ MonoBehaviour:
     antiRollFrontHorizontalMinimum: 1000
     antiRollRearHorizontalMinimum: 1000
     gearShiftingDelayMaximum: 0.15
-    angularDrag: 0.5
-    forwardExtremumSlip: 0.2
+    angularDrag: 0.1
+    angularDragHelperMinimum: 0.1
+    angularDragHelperMaximum: 0.5
+    forwardExtremumSlip: 0.4
     forwardExtremumValue: 1
     forwardAsymptoteSlip: 0.8
     forwardAsymptoteValue: 0.75
-    sidewaysExtremumSlip: 0.25
+    sidewaysExtremumSlip: 0.2
     sidewaysExtremumValue: 1
     sidewaysAsymptoteSlip: 0.5
     sidewaysAsymptoteValue: 0.75
   - behaviorName: Racing
     steeringHelper: 1
     tractionHelper: 1
+    angularDragHelper: 1
+    counterSteering: 1
     ABS: 1
     ESP: 1
     TCS: 1
@@ -66,27 +74,33 @@ MonoBehaviour:
     highSpeedSteerAngleMaximum: 60
     highSpeedSteerAngleAtspeedMinimum: 0
     highSpeedSteerAngleAtspeedMaximum: 350
+    counterSteeringMinimum: 0.1
+    counterSteeringMaximum: 0.5
     steerHelperAngularVelStrengthMinimum: 0.25
     steerHelperAngularVelStrengthMaximum: 1
     steerHelperLinearVelStrengthMinimum: 0.25
     steerHelperLinearVelStrengthMaximum: 1
     tractionHelperStrengthMinimum: 0.25
     tractionHelperStrengthMaximum: 1
-    antiRollFrontHorizontalMinimum: 5000
-    antiRollRearHorizontalMinimum: 5000
+    antiRollFrontHorizontalMinimum: 2000
+    antiRollRearHorizontalMinimum: 2000
     gearShiftingDelayMaximum: 0.15
-    angularDrag: 0.5
-    forwardExtremumSlip: 0.2
+    angularDrag: 0.1
+    angularDragHelperMinimum: 0.1
+    angularDragHelperMaximum: 0.5
+    forwardExtremumSlip: 0.3
     forwardExtremumValue: 1
     forwardAsymptoteSlip: 0.8
     forwardAsymptoteValue: 0.75
-    sidewaysExtremumSlip: 0.3
+    sidewaysExtremumSlip: 0.2
     sidewaysExtremumValue: 1
     sidewaysAsymptoteSlip: 0.25
     sidewaysAsymptoteValue: 0.75
   - behaviorName: Drift
     steeringHelper: 1
-    tractionHelper: 1
+    tractionHelper: 0
+    angularDragHelper: 1
+    counterSteering: 1
     ABS: 0
     ESP: 0
     TCS: 0
@@ -96,16 +110,20 @@ MonoBehaviour:
     highSpeedSteerAngleMaximum: 60
     highSpeedSteerAngleAtspeedMinimum: 100
     highSpeedSteerAngleAtspeedMaximum: 200
+    counterSteeringMinimum: 0.25
+    counterSteeringMaximum: 1
     steerHelperAngularVelStrengthMinimum: 0
     steerHelperAngularVelStrengthMaximum: 0.015
     steerHelperLinearVelStrengthMinimum: 0
     steerHelperLinearVelStrengthMaximum: 0
     tractionHelperStrengthMinimum: 0
-    tractionHelperStrengthMaximum: 0.1
+    tractionHelperStrengthMaximum: 0
     antiRollFrontHorizontalMinimum: 1000
     antiRollRearHorizontalMinimum: 1000
     gearShiftingDelayMaximum: 0.15
     angularDrag: 0.5
+    angularDragHelperMinimum: 0.1
+    angularDragHelperMaximum: 0.25
     forwardExtremumSlip: 0.4
     forwardExtremumValue: 1
     forwardAsymptoteSlip: 0.8
@@ -117,6 +135,8 @@ MonoBehaviour:
   - behaviorName: Semi Arcade
     steeringHelper: 1
     tractionHelper: 1
+    angularDragHelper: 1
+    counterSteering: 0
     ABS: 0
     ESP: 0
     TCS: 0
@@ -126,16 +146,20 @@ MonoBehaviour:
     highSpeedSteerAngleMaximum: 60
     highSpeedSteerAngleAtspeedMinimum: 100
     highSpeedSteerAngleAtspeedMaximum: 350
+    counterSteeringMinimum: 0
+    counterSteeringMaximum: 0
     steerHelperAngularVelStrengthMinimum: 0.5
     steerHelperAngularVelStrengthMaximum: 1
     steerHelperLinearVelStrengthMinimum: 0.5
     steerHelperLinearVelStrengthMaximum: 1
     tractionHelperStrengthMinimum: 0.25
     tractionHelperStrengthMaximum: 1
-    antiRollFrontHorizontalMinimum: 10000
-    antiRollRearHorizontalMinimum: 10000
+    antiRollFrontHorizontalMinimum: 7500
+    antiRollRearHorizontalMinimum: 7500
     gearShiftingDelayMaximum: 0.1
     angularDrag: 0.5
+    angularDragHelperMinimum: 0.1
+    angularDragHelperMaximum: 0.25
     forwardExtremumSlip: 0.2
     forwardExtremumValue: 2
     forwardAsymptoteSlip: 2
@@ -147,6 +171,8 @@ MonoBehaviour:
   - behaviorName: Fun
     steeringHelper: 1
     tractionHelper: 1
+    angularDragHelper: 1
+    counterSteering: 0
     ABS: 0
     ESP: 0
     TCS: 0
@@ -156,21 +182,25 @@ MonoBehaviour:
     highSpeedSteerAngleMaximum: 60
     highSpeedSteerAngleAtspeedMinimum: 100
     highSpeedSteerAngleAtspeedMaximum: 350
+    counterSteeringMinimum: 0
+    counterSteeringMaximum: 0
     steerHelperAngularVelStrengthMinimum: 1
     steerHelperAngularVelStrengthMaximum: 1
     steerHelperLinearVelStrengthMinimum: 1
     steerHelperLinearVelStrengthMaximum: 1
     tractionHelperStrengthMinimum: 0.25
-    tractionHelperStrengthMaximum: 1
-    antiRollFrontHorizontalMinimum: 20000
-    antiRollRearHorizontalMinimum: 20000
+    tractionHelperStrengthMaximum: 0.5
+    antiRollFrontHorizontalMinimum: 10000
+    antiRollRearHorizontalMinimum: 10000
     gearShiftingDelayMaximum: 0.5
-    angularDrag: 0.5
+    angularDrag: 0.1
+    angularDragHelperMinimum: 0.25
+    angularDragHelperMaximum: 0.5
     forwardExtremumSlip: 0.2
     forwardExtremumValue: 2
     forwardAsymptoteSlip: 2
     forwardAsymptoteValue: 2
-    sidewaysExtremumSlip: 0.25
+    sidewaysExtremumSlip: 0.2
     sidewaysExtremumValue: 2
     sidewaysAsymptoteSlip: 2
     sidewaysAsymptoteValue: 2
@@ -213,6 +243,24 @@ MonoBehaviour:
   Xbox_changeCameraKB: Xbox_Back
   Xbox_lookBackKB: Xbox_ClickRight
   Xbox_trailerAttachDetach: Xbox_ClickLeft
+  PS4_verticalInput: PS4_Vertical
+  PS4_horizontalInput: PS4_Horizontal
+  PS4_triggerLeftInput: PS4_TriggerLeft
+  PS4_triggerRightInput: PS4_TriggerRight
+  PS4_mouseXInput: PS4_MouseX
+  PS4_mouseYInput: PS4_MouseY
+  PS4_handbrakeKB: PS4_Circle
+  PS4_startEngineKB: 
+  PS4_lowBeamHeadlightsKB: PS4_Triangle
+  PS4_highBeamHeadlightsKB: PS4_Square
+  PS4_indicatorKB: PS4_DPadHorizontal
+  PS4_hazardIndicatorKB: PS4_DPadVertical
+  PS4_shiftGearUp: PS4_R1
+  PS4_shiftGearDown: PS4_L1
+  PS4_boostKB: PS4_X
+  PS4_changeCameraKB: PS4_Options
+  PS4_lookBackKB: PS4_ClickRight
+  PS4_trailerAttachDetach: PS4_ClickLeft
   LogiSteeringWheel_handbrakeKB: 1
   LogiSteeringWheel_startEngineKB: 10
   LogiSteeringWheel_lowBeamHeadlightsKB: 9
@@ -225,6 +273,7 @@ MonoBehaviour:
   LogiSteeringWheel_lookBackKB: 7
   useVR: 0
   useAutomaticGear: 1
+  useAutomaticClutch: 1
   runEngineAtAwake: 1
   autoReverse: 1
   autoReset: 1

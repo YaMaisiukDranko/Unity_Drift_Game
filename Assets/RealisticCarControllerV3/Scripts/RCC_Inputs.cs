@@ -69,11 +69,5 @@ public class RCC_Inputs{
 		steerInput = _steerInput;
 
 	}
-
-//	public static RCC_Inputs GetInputs(){
-//
-//		RCC_MobileButtons 
-//
-//	}
     
 }

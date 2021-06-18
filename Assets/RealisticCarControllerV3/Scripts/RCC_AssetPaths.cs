@@ -1,20 +1,29 @@
-﻿using System.Collections;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RCC_AssetPaths{
     
-	public const string BCGSharedAssetsPath = "Assets/RealisticCarControllerV3/For BCG Shared Assets (Enter-Exit)/BCG Shared Assets.unitypackage";
-    public const string PUN2AssetsPath = "Assets/RealisticCarControllerV3/For Photon PUN 2/Photon PUN 2 Scripts and Photon Vehicles.unitypackage";
-    public const string projectSettingsPath = "Assets/RealisticCarControllerV3/Project Settings/RCC_ProjectSettings.unitypackage";
+	public const string BCGSharedAssetsPath = "Assets/RealisticCarControllerV3/Addon Packages/For BCG Shared Assets (Enter-Exit)/BCG Shared Assets.unitypackage";
+	public const string PUN2AssetsPath = "Assets/RealisticCarControllerV3/Addon Packages/For Photon PUN 2/Photon PUN 2 Scripts and Photon Vehicles.unitypackage";
+	public const string projectSettingsPath = "Assets/RealisticCarControllerV3/Addon Packages/Project Settings/RCC_ProjectSettings.unitypackage";
 
 	public const string assetStorePath = "https://assetstore.unity.com/packages/tools/physics/realistic-car-controller-16296#content";
 	public const string photonPUN2 = "https://assetstore.unity.com/packages/tools/network/photon-pun-2-120838";
 	public const string logitech = "https://assetstore.unity.com/packages/tools/integration/logitech-gaming-sdk-6630";
 
-	public const string documentations = "http://bonecrackergames.com/bonecrackergames.com/admin/AssetStoreDocs/Realistic%20Car%20Controller%20V3.4.pdf";
-	public const string scripts = "http://bonecrackergames.com/bonecrackergames.com/admin/AssetStoreDocs/Realistic%20Car%20Controller%20V3.4%20Scripts.pdf";
-	public const string API = "http://bonecrackergames.com/bonecrackergames.com/admin/AssetStoreDocs/Realistic%20Car%20Controller%20V3.4%20API.pdf";
+	public const string documentations = "http://www.bonecrackergames.com/bonecrackergames.com/admin/AssetStoreDemos/RCCV4/Documentations.rar";
+	public const string scripts = "http://www.bonecrackergames.com/bonecrackergames.com/admin/AssetStoreDemos/RCCV4/Documentations.rar";
+	public const string API = "http://www.bonecrackergames.com/bonecrackergames.com/admin/AssetStoreDemos/RCCV4/Documentations.rar";
 	public const string YTVideos = "https://www.youtube.com/playlist?list=PLRXTqAVrLDpoW58lKf8XA1AWD6kDkoKb1";
 	public const string otherAssets = "https://assetstore.unity.com/publishers/5425";
 

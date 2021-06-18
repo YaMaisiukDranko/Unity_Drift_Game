@@ -41,9 +41,9 @@ public class RCC_Recorder : MonoBehaviour {
 
 	public RCC_CarControllerV3 carController;
 
-	public List <PlayerInput> Inputs = new List<PlayerInput>();
-	public List <PlayerTransform> Transforms = new List<PlayerTransform>();
-	public List <PlayerRigidBody> Rigidbodies = new List<PlayerRigidBody>();
+	public List <PlayerInput> Inputs;
+	public List <PlayerTransform> Transforms;
+	public List <PlayerRigidBody> Rigidbodies;
 
 	[System.Serializable]
 	public class PlayerInput{
@@ -54,7 +54,6 @@ public class RCC_Recorder : MonoBehaviour {
 		public float handbrakeInput = 0f;
 		public float clutchInput = 0f;
 		public float boostInput = 0f;
-		public float idleInput = 0f;
 		public float fuelInput = 0f;
 		public int direction = 1;
 		public bool canGoReverse = false;
@@ -65,7 +64,7 @@ public class RCC_Recorder : MonoBehaviour {
 		public bool lowBeamHeadLightsOn = false;
 		public bool highBeamHeadLightsOn = false;
 
-		public PlayerInput(float _gasInput, float _brakeInput, float _steerInput, float _handbrakeInput, float _clutchInput, float _boostInput, float _idleInput, float _fuelInput, int _direction, bool _canGoReverse, int _currentGear, bool _changingGear, RCC_CarControllerV3.IndicatorsOn _indicatorsOn, bool _lowBeamHeadLightsOn, bool _highBeamHeadLightsOn){
+		public PlayerInput(float _gasInput, float _brakeInput, float _steerInput, float _handbrakeInput, float _clutchInput, float _boostInput, float _fuelInput, int _direction, bool _canGoReverse, int _currentGear, bool _changingGear, RCC_CarControllerV3.IndicatorsOn _indicatorsOn, bool _lowBeamHeadLightsOn, bool _highBeamHeadLightsOn){
 
 			throttleInput = _gasInput;
 			brakeInput = _brakeInput;
@@ -73,7 +72,6 @@ public class RCC_Recorder : MonoBehaviour {
 			handbrakeInput = _handbrakeInput;
 			clutchInput = _clutchInput;
 			boostInput = _boostInput;
-			idleInput = _idleInput;
 			fuelInput = _fuelInput;
 			direction = _direction;
 			canGoReverse = _canGoReverse;
@@ -121,7 +119,15 @@ public class RCC_Recorder : MonoBehaviour {
 	public enum Mode{Neutral, Play, Record}
 	public Mode mode;
 
-	public void Record(){
+    private void Awake() {
+
+		Inputs = new List<PlayerInput>();
+		Transforms = new List<PlayerTransform>();
+		Rigidbodies = new List<PlayerRigidBody>();
+
+	}
+
+    public void Record(){
 
 		if (mode != Mode.Record) {
 			mode = Mode.Record;
@@ -242,7 +248,6 @@ public class RCC_Recorder : MonoBehaviour {
 			carController.handbrakeInput = recorded.inputs[i].handbrakeInput;
 			carController.clutchInput = recorded.inputs[i].clutchInput;
 			carController.boostInput = recorded.inputs[i].boostInput;
-			carController.idleInput = recorded.inputs[i].idleInput;
 			carController.fuelInput = recorded.inputs[i].fuelInput;
 			carController.direction = recorded.inputs[i].direction;
 			carController.canGoReverseNow = recorded.inputs[i].canGoReverse;
@@ -316,7 +321,7 @@ public class RCC_Recorder : MonoBehaviour {
 
 		case Mode.Record:
 
-			Inputs.Add(new PlayerInput(carController.throttleInput, carController.brakeInput, carController.steerInput, carController.handbrakeInput, carController.clutchInput, carController.boostInput, carController.idleInput, carController.fuelInput, carController.direction, carController.canGoReverseNow, carController.currentGear, carController.changingGear, carController.indicatorsOn, carController.lowBeamHeadLightsOn, carController.highBeamHeadLightsOn));
+			Inputs.Add(new PlayerInput(carController.throttleInput, carController.brakeInput, carController.steerInput, carController.handbrakeInput, carController.clutchInput, carController.boostInput, carController.fuelInput, carController.direction, carController.canGoReverseNow, carController.currentGear, carController.changingGear, carController.indicatorsOn, carController.lowBeamHeadLightsOn, carController.highBeamHeadLightsOn));
 			Transforms.Add (new PlayerTransform(carController.transform.position, carController.transform.rotation));
 			Rigidbodies.Add(new PlayerRigidBody(carController.rigid.velocity, carController.rigid.angularVelocity));
 

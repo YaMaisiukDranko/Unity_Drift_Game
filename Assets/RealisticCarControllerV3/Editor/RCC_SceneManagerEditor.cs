@@ -1,7 +1,7 @@
 ﻿//----------------------------------------------
-//            Realistic Tank Controller
+//            Realistic Car Controller
 //
-// Copyright © 2014 - 2019 BoneCracker Games
+// Copyright © 2014 - 2020 BoneCracker Games
 // http://www.bonecrackergames.com
 // Buğra Özdoğanlar
 //

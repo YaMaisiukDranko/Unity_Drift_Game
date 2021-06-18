@@ -89,7 +89,7 @@ public class RCC_UIDashboardDisplay : MonoBehaviour {
 
 	private void CheckController(){
 
-		if (RCCSettings.selectedControllerType == RCC_Settings.ControllerType.Keyboard || RCCSettings.selectedControllerType == RCC_Settings.ControllerType.XBox360One) {
+		if (RCCSettings.selectedControllerType == RCC_Settings.ControllerType.Keyboard || RCCSettings.selectedControllerType == RCC_Settings.ControllerType.XBox360One || RCCSettings.selectedControllerType == RCC_Settings.ControllerType.PS4 || RCCSettings.selectedControllerType == RCC_Settings.ControllerType.LogitechSteeringWheel) {
 
 			if(mobileControllers)
 				mobileControllers.interactable = false;

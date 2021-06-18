@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 199306589863423384}
   - component: {fileID: 114476198759127410}
   m_Layer: 8
-  m_Name: RCCExhaust (1)
+  m_Name: RCCExhaust
   m_TagString: Untagged
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1238,9 +1238,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.25490198}
-        key2: {r: 0, g: 0, b: 0, a: 0.019607844}
+        key0: {r: 1, g: 1, b: 1, a: 0.078431375}
+        key1: {r: 1, g: 1, b: 1, a: 0.39215687}
+        key2: {r: 0, g: 0, b: 0, a: 0.078431375}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1256,7 +1256,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5012
-        atime2: 30455
+        atime2: 19661
         atime3: 65535
         atime4: 65535
         atime5: 65535
@@ -9760,21 +9760,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 80
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &114434324590592486
 MonoBehaviour:
@@ -9788,8 +9788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 4502184622385446}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -9798,8 +9798,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 3
+  width: 0.275
   offset: 0.05
+  camber: 3
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &1131763954139892
@@ -10585,37 +10588,37 @@ MonoBehaviour:
   antiRollFrontHorizontal: 1000
   antiRollRearHorizontal: 1000
   antiRollVertical: 0
-  downForce: 25
+  downForce: 40
   useCounterSteering: 1
   counterSteeringFactor: 1
   speed: 0
-  maxspeed: 270
+  maxspeed: 320
   engineTorqueCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.027272727
-      outSlope: 0.027272727
+      inSlope: 0.07272727
+      outSlope: 0.07272727
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 5500
-      value: 150
-      inSlope: -0.0030303039
-      outSlope: -0.0030303039
+      value: 400
+      inSlope: 0.009696966
+      outSlope: 0.009696966
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 7000
-      value: 100
-      inSlope: -0.033333335
-      outSlope: -0.033333335
+      time: 8000
+      value: 266.66666
+      inSlope: -0.05333334
+      outSlope: -0.05333334
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -10624,12 +10627,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   autoGenerateEngineRPMCurve: 1
-  maxEngineTorque: 150
+  maxEngineTorque: 400
   maxEngineTorqueAtRPM: 5500
-  minEngineRPM: 1000
-  maxEngineRPM: 7000
+  minEngineRPM: 750
+  maxEngineRPM: 8000
   engineRPM: 0
-  engineInertia: 0.1
+  engineInertia: 0.15
   useRevLimiter: 1
   useExhaustFlame: 1
   engineRunning: 0
@@ -10644,23 +10647,23 @@ MonoBehaviour:
   engineCoolRate: 1
   gears:
   - maxRatio: 4.35
-    maxSpeed: 45
-    targetSpeedForNextGear: 38
+    maxSpeed: 53
+    targetSpeedForNextGear: 45
   - maxRatio: 2.5
-    maxSpeed: 90
-    targetSpeedForNextGear: 76
+    maxSpeed: 106
+    targetSpeedForNextGear: 90
   - maxRatio: 1.66
-    maxSpeed: 135
-    targetSpeedForNextGear: 114
+    maxSpeed: 160
+    targetSpeedForNextGear: 136
   - maxRatio: 1.23
-    maxSpeed: 180
-    targetSpeedForNextGear: 153
+    maxSpeed: 213
+    targetSpeedForNextGear: 181
   - maxRatio: 1
-    maxSpeed: 225
-    targetSpeedForNextGear: 191
+    maxSpeed: 266
+    targetSpeedForNextGear: 226
   - maxRatio: 0.85
-    maxSpeed: 270
-    targetSpeedForNextGear: 229
+    maxSpeed: 320
+    targetSpeedForNextGear: 272
   totalGears: 6
   currentGear: 0
   NGear: 0
@@ -10669,6 +10672,7 @@ MonoBehaviour:
   gearShiftingThreshold: 0.85
   clutchInertia: 0.1
   gearShiftUpRPM: 5500
+  gearShiftDownRPM: 3000
   changingGear: 0
   direction: 1
   launched: 0
@@ -10687,6 +10691,11 @@ MonoBehaviour:
   minEngineSoundVolume: 0.05
   maxEngineSoundVolume: 0.35
   idleEngineSoundVolume: 0.85
+  engineSoundPosition: {x: 0, y: 0, z: 1.5}
+  gearSoundPosition: {x: 0, y: -0.5, z: 0.5}
+  turboSoundPosition: {x: 0, y: 0, z: 1.5}
+  exhaustSoundPosition: {x: 0, y: -0.5, z: -2}
+  windSoundPosition: {x: 0, y: 0, z: 2}
   inputs:
     throttleInput: 0
     brakeInput: 0
@@ -10701,7 +10710,6 @@ MonoBehaviour:
   clutchInput: 0
   handbrakeInput: 0
   boostInput: 0
-  idleInput: 0
   fuelInput: 0
   cutGas: 0
   lowBeamHeadLightsOn: 0
@@ -10709,6 +10717,9 @@ MonoBehaviour:
   indicatorsOn: 0
   indicatorTimer: 0
   useDamage: 1
+  useWheelDamage: 0
+  wheelDamageRadius: 1
+  wheelDamageMultiplier: 0.1
   deformableMeshFilters: []
   damageFilter:
     serializedVersion: 2
@@ -10720,6 +10731,7 @@ MonoBehaviour:
   maximumDamage: 0.5
   damageMultiplier: 1
   maximumContactSparkle: 5
+  detachableParts: []
   velocityDirection: {fileID: 0}
   steeringDirection: {fileID: 0}
   velocityAngle: 0
@@ -10733,8 +10745,8 @@ MonoBehaviour:
   TCSStrength: 0.5
   ESPThreshold: 0.25
   ESPStrength: 0.25
-  steerHelperLinearVelStrength: 0.1
-  steerHelperAngularVelStrength: 0.1
+  steerHelperLinearVelStrength: 0.3
+  steerHelperAngularVelStrength: 0.3
   tractionHelperStrength: 0.1
   angularDragHelperStrength: 0.1
   ABSAct: 0
@@ -10762,24 +10774,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointsContainer: {fileID: 0}
-  currentWaypoint: 0
+  currentWaypointIndex: 0
   targetChase: {fileID: 0}
   targetTag: Player
-  _AIType: 0
-  wideRayLength: 6
-  tightRayLength: 6
-  sideRayLength: 2
+  navigationMode: 1
+  raycastLength: 20
+  raycastAngle: 30
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
+  obstacle: {fileID: 0}
+  useRaycasts: 1
+  steerInput: 0
+  throttleInput: 0
+  brakeInput: 0
+  handbrakeInput: 0
   limitSpeed: 0
   maximumSpeed: 100
   smoothedSteer: 1
   lap: 0
   totalWaypointPassed: 0
-  nextWaypointPassRadius: 40
+  nextWaypointPassDistance: 20
+  chaseDistance: 200
+  startFollowDistance: 300
+  stopFollowDistance: 50
   ignoreWaypointNow: 0
-  detectorRadius: 100
   targetsInZone: []
 --- !u!1 &1221882433477730
 GameObject:
@@ -16226,21 +16245,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 80
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &114904197678527912
 MonoBehaviour:
@@ -16254,8 +16273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 4699728546731804}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -16264,8 +16283,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 5
+  width: 0.275
   offset: 0.05
+  camber: 5
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &1407145717026380
@@ -16568,21 +16590,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 80
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &114215035645939246
 MonoBehaviour:
@@ -16596,8 +16618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 4570834600674416}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -16606,8 +16628,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 3
+  width: 0.275
   offset: 0.05
+  camber: 3
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &1512605632033344
@@ -16910,21 +16935,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 80
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &114522958683723892
 MonoBehaviour:
@@ -16938,8 +16963,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 4121285711290578}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -16948,8 +16973,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 5
+  width: 0.275
   offset: 0.05
+  camber: 5
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &1599294854730824
@@ -18595,9 +18623,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.25490198}
-        key2: {r: 0, g: 0, b: 0, a: 0.019607844}
+        key0: {r: 1, g: 1, b: 1, a: 0.078431375}
+        key1: {r: 1, g: 1, b: 1, a: 0.39215687}
+        key2: {r: 0, g: 0, b: 0, a: 0.078431375}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -18613,7 +18641,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5012
-        atime2: 30455
+        atime2: 19661
         atime3: 65535
         atime4: 65535
         atime5: 65535
@@ -22200,7 +22228,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.2869873, y: 0.46299934, z: 0.67700195}
+  m_ConnectedAnchor: {x: -0.28698742, y: 0.46299934, z: 0.6770019}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 0, z: 0}
   m_XMotion: 1

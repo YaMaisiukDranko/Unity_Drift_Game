@@ -1,7 +1,7 @@
 ﻿//----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2014 - 2019 BoneCracker Games
+// Copyright © 2014 - 2020 BoneCracker Games
 // http://www.bonecrackergames.com
 // Buğra Özdoğanlar
 //
@@ -34,8 +34,15 @@ public class RCC_EditorWindows : Editor {
 	#region Configure
 	[MenuItem("Tools/BoneCracker Games/Realistic Car Controller/Configure Demo Vehicles", false, -65)]
 	public static void OpenDemoVehiclesSettings(){
-		Selection.activeObject =RCC_DemoVehicles.Instance;
+		Selection.activeObject = RCC_DemoVehicles.Instance;
 	}
+
+	#if BCG_PHOTON && PHOTON_UNITY_NETWORKING
+	[MenuItem("Tools/BoneCracker Games/Realistic Car Controller/Configure Photon Demo Vehicles", false, -65)]
+	public static void OpenPhotonDemoVehiclesSettings(){
+		Selection.activeObject = RCC_PhotonDemoVehicles.Instance;
+	}
+	#endif
 
 	[MenuItem("Tools/BoneCracker Games/Realistic Car Controller/Configure Ground Materials", false, -65)]
 	public static void OpenGroundMaterialsSettings(){
@@ -442,5 +449,14 @@ public class RCC_EditorWindows : Editor {
 
 	}
 	#endregion
+
+	[MenuItem("Tools/BoneCracker Games/Realistic Car Controller/Export Project Settings", false, 1000)]
+	public static void ExportProjectSettings(){
+
+		string[] projectContent = new string[] {"ProjectSettings/TagManager.asset","ProjectSettings/InputManager.asset"};
+		AssetDatabase.ExportPackage(projectContent, "RCC_ProjectSettings.unitypackage",ExportPackageOptions.Interactive | ExportPackageOptions.Recurse |ExportPackageOptions.IncludeDependencies);
+		Debug.Log ("Project Exported");
+
+	}
 
 }

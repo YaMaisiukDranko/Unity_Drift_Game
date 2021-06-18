@@ -565,21 +565,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &11489930
 MonoBehaviour:
@@ -593,8 +593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 486694}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -603,8 +603,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 0
+  width: 0.25
   offset: 0.05
+  camber: 0
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &110760
@@ -1342,21 +1345,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &11471062
 MonoBehaviour:
@@ -1370,8 +1373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 487770}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -1380,8 +1383,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 0
+  width: 0.25
   offset: 0.05
+  camber: 0
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &128722
@@ -1551,21 +1557,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &11490450
 MonoBehaviour:
@@ -1579,8 +1585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 499534}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -1589,8 +1595,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 0
+  width: 0.25
   offset: 0.05
+  camber: 0
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &133026
@@ -3852,7 +3861,6 @@ MonoBehaviour:
   rigid: {fileID: 0}
   COM: {fileID: 419224}
   brakeTorque: 3000
-  useClutchMarginAtFirstGear: 1
   steerAngle: 40
   highspeedsteerAngle: 5
   highspeedsteerAngleAtspeed: 220
@@ -3943,6 +3951,7 @@ MonoBehaviour:
   gearShiftingThreshold: 0.8
   clutchInertia: 0.1
   gearShiftUpRPM: 7000
+  gearShiftDownRPM: 3000
   changingGear: 0
   direction: 1
   launched: 0
@@ -3961,6 +3970,11 @@ MonoBehaviour:
   minEngineSoundVolume: 0.05
   maxEngineSoundVolume: 0.6
   idleEngineSoundVolume: 0.5
+  engineSoundPosition: {x: 0, y: 0, z: 1.5}
+  gearSoundPosition: {x: 0, y: -0.5, z: 0.5}
+  turboSoundPosition: {x: 0, y: 0, z: 1.5}
+  exhaustSoundPosition: {x: 0, y: -0.5, z: -2}
+  windSoundPosition: {x: 0, y: 0, z: 2}
   inputs:
     throttleInput: 0
     brakeInput: 0
@@ -3975,7 +3989,6 @@ MonoBehaviour:
   clutchInput: 0
   handbrakeInput: 0
   boostInput: 0
-  idleInput: 0
   fuelInput: 0
   cutGas: 0
   lowBeamHeadLightsOn: 0
@@ -3983,10 +3996,13 @@ MonoBehaviour:
   indicatorsOn: 0
   indicatorTimer: 0
   useDamage: 1
+  useWheelDamage: 1
+  wheelDamageRadius: 1
+  wheelDamageMultiplier: 0.1
   deformableMeshFilters: []
   damageFilter:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294967295
   randomizeVertices: 1
   damageRadius: 0.5
   repairNow: 0
@@ -3994,6 +4010,7 @@ MonoBehaviour:
   maximumDamage: 0.5
   damageMultiplier: 1
   maximumContactSparkle: 5
+  detachableParts: []
   velocityDirection: {fileID: 0}
   steeringDirection: {fileID: 0}
   velocityAngle: 0
@@ -4327,21 +4344,21 @@ WheelCollider:
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 0.1
+  m_ForceAppPointDistance: 0
   m_Mass: 40
   m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.6
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.8
-    m_Stiffness: 1.5
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!114 &11431968
 MonoBehaviour:
@@ -4355,8 +4372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2810a20460894690b9c5d4b433d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   wheelModel: {fileID: 419436}
+  isGrounded: 0
   canPower: 0
   powerMultiplier: 1
   canSteer: 0
@@ -4365,8 +4382,11 @@ MonoBehaviour:
   brakingMultiplier: 1
   canHandbrake: 0
   handbrakeMultiplier: 1
-  camber: 0
+  width: 0.25
   offset: 0.05
+  camber: 0
+  caster: 0
+  toe: 0
   bumpForce: 0
   oldForce: 0
 --- !u!1 &186610
@@ -4903,9 +4923,9 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
-      minScalar: 1
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4918,18 +4938,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -4942,23 +4953,14 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
-      minScalar: 1
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4971,18 +4973,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -4995,21 +4988,12 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -5024,18 +5008,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -5048,21 +5023,12 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -5077,18 +5043,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -5101,18 +5058,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startRotation:
       serializedVersion: 2
       minMaxState: 3
@@ -5852,9 +5800,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.25490198}
-        key2: {r: 0, g: 0, b: 0, a: 0.019607844}
+        key0: {r: 1, g: 1, b: 1, a: 0.078431375}
+        key1: {r: 1, g: 1, b: 1, a: 0.39215687}
+        key2: {r: 0, g: 0, b: 0, a: 0.078431375}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -5870,7 +5818,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5012
-        atime2: 30455
+        atime2: 19661
         atime3: 65535
         atime4: 65535
         atime5: 65535
@@ -9261,7 +9209,7 @@ ParticleSystemRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -15288,9 +15236,9 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
-      minScalar: 1
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15303,18 +15251,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -15327,23 +15266,14 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
-      minScalar: 1
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15356,18 +15286,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -15380,21 +15301,12 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -15409,18 +15321,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -15433,21 +15336,12 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -15462,18 +15356,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -15486,18 +15371,9 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
     startRotation:
       serializedVersion: 2
       minMaxState: 3
@@ -16237,9 +16113,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.25490198}
-        key2: {r: 0, g: 0, b: 0, a: 0.019607844}
+        key0: {r: 1, g: 1, b: 1, a: 0.078431375}
+        key1: {r: 1, g: 1, b: 1, a: 0.39215687}
+        key2: {r: 0, g: 0, b: 0, a: 0.078431375}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -16255,7 +16131,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5012
-        atime2: 30455
+        atime2: 19661
         atime3: 65535
         atime4: 65535
         atime5: 65535
@@ -19646,7 +19522,7 @@ ParticleSystemRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -24411,7 +24287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461310728187316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35, y: 0, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
   m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 479960}

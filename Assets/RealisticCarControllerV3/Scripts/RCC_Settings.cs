@@ -17,7 +17,7 @@ using System.Collections;
 [System.Serializable]
 public class RCC_Settings : ScriptableObject {
 
-	public const string RCCVersion = "V3.4";
+	public const string RCCVersion = "V3.45";
 	
 	#region singleton
 	private static RCC_Settings instance;
@@ -59,27 +59,34 @@ public class RCC_Settings : ScriptableObject {
 		[Header("Steering Helpers")]
 		public bool steeringHelper = true;
 		public bool tractionHelper = true;
+		public bool angularDragHelper = false;
+		public bool counterSteering = true;
 		public bool ABS = false;
 		public bool ESP = false;
 		public bool TCS = false;
 		public bool applyExternalWheelFrictions = false;
 		public bool applyRelativeTorque = false;
 
-		public float highSpeedSteerAngleMinimum = 40f;
+		[Space()]
+		public float highSpeedSteerAngleMinimum = 20f;
 		public float highSpeedSteerAngleMaximum = 40f;
 
 		public float highSpeedSteerAngleAtspeedMinimum = 100f;
-		public float highSpeedSteerAngleAtspeedMaximum = 100f;
+		public float highSpeedSteerAngleAtspeedMaximum = 200f;
+
+		[Space()]
+		public float counterSteeringMinimum = .1f;
+		public float counterSteeringMaximum = 1f;
 
 		[Space()]
 		[Range(0f, 1f)]public float steerHelperAngularVelStrengthMinimum = .1f;
-		[Range(0f, 1f)]public float steerHelperAngularVelStrengthMaximum = .1f;
+		[Range(0f, 1f)]public float steerHelperAngularVelStrengthMaximum = 1;
 
 		[Range(0f, 1f)]public float steerHelperLinearVelStrengthMinimum = .1f;
-		[Range(0f, 1f)]public float steerHelperLinearVelStrengthMaximum = .1f;
+		[Range(0f, 1f)]public float steerHelperLinearVelStrengthMaximum = 1f;
 
 		[Range(0f, 1f)]public float tractionHelperStrengthMinimum = .1f;
-		[Range(0f, 1f)]public float tractionHelperStrengthMaximum = .1f;
+		[Range(0f, 1f)]public float tractionHelperStrengthMaximum = 1f;
 
 		[Space()]
 		public float antiRollFrontHorizontalMinimum = 1000f;
@@ -89,6 +96,8 @@ public class RCC_Settings : ScriptableObject {
 		[Range(0f, 1f)]public float gearShiftingDelayMaximum = .15f;
 
 		[Range(0f, 10f)]public float angularDrag = .1f;
+		[Range(0f, 1f)]public float angularDragHelperMinimum = .1f;
+		[Range(0f, 1f)]public float angularDragHelperMaximum = 1f;
 
 		[Header("Wheel Frictions Forward")]
 		public float forwardExtremumSlip = .4f;
@@ -109,7 +118,7 @@ public class RCC_Settings : ScriptableObject {
 
 	// Controller Type
 	public ControllerType controllerType;
-	public enum ControllerType{Keyboard, Mobile, XBox360One, LogitechSteeringWheel, Custom}
+	public enum ControllerType{Keyboard, Mobile, XBox360One, PS4, LogitechSteeringWheel, Custom}
 
 	// Behavior Types
 	public BehaviorType[] behaviorTypes;
@@ -152,14 +161,30 @@ public class RCC_Settings : ScriptableObject {
 	public string Xbox_hazardIndicatorKB = "Xbox_DPadVertical";
 	public string Xbox_shiftGearUp = "Xbox_RB";
 	public string Xbox_shiftGearDown = "Xbox_LB";
-//	public KeyCode Xbox_NGear = KeyCode.N;
 	public string Xbox_boostKB = "Xbox_A";
-//	public KeyCode Xbox_slowMotionKB = KeyCode.G;
 	public string Xbox_changeCameraKB = "Xbox_Back";
-//	public KeyCode Xbox_recordKB = KeyCode.R;
-//	public KeyCode Xbox_playbackKB = KeyCode.P;
 	public string Xbox_lookBackKB = "Xbox_ClickRight";
 	public string Xbox_trailerAttachDetach = "Xbox_ClickLeft";
+
+	// PS4 Inputs
+	public string PS4_verticalInput = "PS4_Vertical";
+	public string PS4_horizontalInput = "PS4_Horizontal";
+	public string PS4_triggerLeftInput = "PS4_TriggerLeft";
+	public string PS4_triggerRightInput = "PS4_TriggerRight";
+	public string PS4_mouseXInput = "PS4_MouseX";
+	public string PS4_mouseYInput = "PS4_MouseY";
+	public string PS4_handbrakeKB = "PS4_B";
+	public string PS4_startEngineKB = "PS4_Y";
+	public string PS4_lowBeamHeadlightsKB = "PS4_LB";
+	public string PS4_highBeamHeadlightsKB = "PS4_RB";
+	public string PS4_indicatorKB = "PS4_DPadHorizontal";
+	public string PS4_hazardIndicatorKB = "PS4_DPadVertical";
+	public string PS4_shiftGearUp = "PS4_RB";
+	public string PS4_shiftGearDown = "PS4_LB";
+	public string PS4_boostKB = "PS4_A";
+	public string PS4_changeCameraKB = "PS4_Back";
+	public string PS4_lookBackKB = "PS4_ClickRight";
+	public string PS4_trailerAttachDetach = "PS4_ClickLeft";
 
 	// Logitech Steering Wheel Inputs
 	public int LogiSteeringWheel_handbrakeKB = 0;
@@ -176,6 +201,7 @@ public class RCC_Settings : ScriptableObject {
 	// Main Controller Settings
 	public bool useVR = false;
 	public bool useAutomaticGear = true;
+	public bool useAutomaticClutch = true;
 	public bool runEngineAtAwake = true;
 	public bool autoReverse = true;
 	public bool autoReset = true;

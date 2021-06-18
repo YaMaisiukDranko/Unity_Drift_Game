@@ -21,7 +21,9 @@ public class RCC_SetScriptingSymbol{
 		BuildTargetGroup.Android,
 		BuildTargetGroup.iOS,
 		BuildTargetGroup.WebGL,
+		#if !UNITY_2019_3_OR_NEWER
 		BuildTargetGroup.Facebook,
+		#endif
 		BuildTargetGroup.XboxOne,
 		BuildTargetGroup.PS4,
 		BuildTargetGroup.tvOS,

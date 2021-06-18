@@ -50,4 +50,23 @@ public class RCC_SkidmarksManager : MonoBehaviour {
 
 	}
 
+	// Function called by the wheels that is skidding. Gathers all the information needed to
+	// create the mesh later. Sets the intensity of the skidmark section b setting the alpha
+	// of the vertex color.
+	public int AddSkidMark ( Vector3 pos ,   Vector3 normal ,   float intensity ,   int lastIndex, int groundIndex, float width){
+
+		if (_lastGroundIndex != groundIndex){
+
+			_lastGroundIndex = groundIndex;
+			return -1;
+
+		}
+
+		skidmarks [groundIndex].markWidth = width;
+		skidmarksIndexes[groundIndex] = skidmarks [groundIndex].AddSkidMark (pos, normal, intensity, lastIndex);
+
+		return skidmarksIndexes[groundIndex];
+
+	}
+
 }

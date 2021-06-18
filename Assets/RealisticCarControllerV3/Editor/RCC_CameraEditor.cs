@@ -1,7 +1,7 @@
 ﻿//----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2014 - 2019 BoneCracker Games
+// Copyright © 2014 - 2020 BoneCracker Games
 // http://www.bonecrackergames.com
 // Buğra Özdoğanlar
 //
@@ -70,6 +70,7 @@ public class RCC_CameraEditor : Editor {
 		EditorGUILayout.PropertyField (serializedObject.FindProperty ("useOrbitInTPSCameraMode"), new GUIContent ("Use Orbit", "Use Orbit In TPS Camera Mode."), false);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("TPSCollision"), new GUIContent("TPS Collision", "TPS Collision."), false);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("TPSOffset"), new GUIContent("TPS Offset", "TPS Offset."), false);
+		EditorGUILayout.PropertyField(serializedObject.FindProperty("TPSStartRotation"), new GUIContent("TPS Start Rotation", "TPS Start Rotation."), false);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("useOcclusion"), new GUIContent("Use Occlusion", "Use Occlusion."), false);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("occlusionLayerMask"), new GUIContent("Occlusion LayerMask", "Occlusion LayerMask."), false);
 

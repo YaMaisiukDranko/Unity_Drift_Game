@@ -1466,7 +1466,7 @@ MonoBehaviour:
   activePlayerCanvas: {fileID: 0}
   activeMainCamera: {fileID: 0}
   registerFirstVehicleAsPlayer: 0
-  disableUIWhenNoPlayerVehicle: 1
+  disableUIWhenNoPlayerVehicle: 0
   loadCustomizationAtFirst: 1
   allRecorders: []
   recordMode: 0

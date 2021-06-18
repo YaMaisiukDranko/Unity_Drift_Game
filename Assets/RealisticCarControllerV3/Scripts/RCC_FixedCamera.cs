@@ -58,7 +58,7 @@ public class RCC_FixedCamera : MonoBehaviour {
 
 	}
 
-	public void ChangePosition(){
+    public void ChangePosition(){
 
 		if (!canTrackNow)
 			return;

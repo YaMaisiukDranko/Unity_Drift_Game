@@ -76,7 +76,7 @@ public class RCC_Exhaust : RCC_Core {
 
 			subEmission = flame.emission;
 			flameLight = flame.GetComponentInChildren<Light>();
-			flameSource = NewAudioSource(RCCSettings.audioMixer, gameObject, "Exhaust Flame AudioSource", 10f, 25f, 1f, RCCSettings.exhaustFlameClips[0], false, false, false);
+			flameSource = NewAudioSource(RCCSettings.audioMixer, gameObject, "Exhaust Flame AudioSource", 10f, 25f, .5f, RCCSettings.exhaustFlameClips[0], false, false, false);
 			flameLight.renderMode = RCCSettings.useLightsAsVertexLights ? LightRenderMode.ForceVertex : LightRenderMode.ForcePixel;
 
 		}
@@ -111,7 +111,7 @@ public class RCC_Exhaust : RCC_Core {
 
 			var main = particle.main;
 
-			if (carController.speed < 50) {
+			if (carController.speed < 20) {
 
 				if (!emission.enabled)
 					emission.enabled = true;

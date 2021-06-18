@@ -124,7 +124,7 @@ public class RCC_SceneManager : MonoBehaviour {
 			allRecorders = new List<RCC_Recorder> ();
 			allRecorders.AddRange (gameObject.GetComponentsInChildren<RCC_Recorder> ());
 
-			RCC_Recorder recorder = new RCC_Recorder();
+			RCC_Recorder recorder = null;
 
 			if (allRecorders != null && allRecorders.Count > 0) {
 
@@ -169,7 +169,7 @@ public class RCC_SceneManager : MonoBehaviour {
 			allRecorders = new List<RCC_Recorder> ();
 			allRecorders.AddRange (gameObject.GetComponentsInChildren<RCC_Recorder> ());
 
-			RCC_Recorder recorder = new RCC_Recorder();
+			RCC_Recorder recorder = null;
 
 			if (allRecorders != null && allRecorders.Count > 0) {
 
@@ -471,10 +471,14 @@ public class RCC_SceneManager : MonoBehaviour {
 			break;
 
 		case 3:
+			RCC_Settings.Instance.selectedControllerType = RCC_Settings.ControllerType.PS4;
+			break;
+
+			case 4:
 			RCC_Settings.Instance.selectedControllerType = RCC_Settings.ControllerType.LogitechSteeringWheel;
 			break;
 
-		case 4:
+		case 5:
 			RCC_Settings.Instance.selectedControllerType = RCC_Settings.ControllerType.Custom;
 			break;
 
@@ -494,7 +498,7 @@ public class RCC_SceneManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Transport the specified position and rotation.
+	/// Transport player vehicle the specified position and rotation.
 	/// </summary>
 	/// <param name="position">Position.</param>
 	/// <param name="rotation">Rotation.</param>
@@ -507,6 +511,26 @@ public class RCC_SceneManager : MonoBehaviour {
 
 			activePlayerVehicle.transform.position = position;
 			activePlayerVehicle.transform.rotation = rotation;
+
+		}
+
+	}
+
+	/// <summary>
+	/// Transport target vehicle the specified position and rotation.
+	/// </summary>
+	/// <param name="vehicle"></param>
+	/// <param name="position"></param>
+	/// <param name="rotation"></param>
+	public void Transport(RCC_CarControllerV3 vehicle, Vector3 position, Quaternion rotation) {
+
+		if (vehicle) {
+
+			vehicle.rigid.velocity = Vector3.zero;
+			vehicle.rigid.angularVelocity = Vector3.zero;
+
+			vehicle.transform.position = position;
+			vehicle.transform.rotation = rotation;
 
 		}
 

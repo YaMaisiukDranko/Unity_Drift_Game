@@ -36,11 +36,8 @@ public class RCC_Customization : MonoBehaviour {
 
 			vehicle.SetCanControl (false);
 
-			if (cam) {
-	
+			if (cam)
 				cam.ChangeCamera (RCC_Camera.CameraMode.TPS);
-
-			}
 
 			if (UI)
 				UI.SetDisplayType(RCC_UIDashboardDisplay.DisplayType.Customization);
@@ -51,11 +48,8 @@ public class RCC_Customization : MonoBehaviour {
 			SetExhaustFlame (vehicle, false);
 			vehicle.SetCanControl (true);
 
-			if (cam) {
-				
+			if (cam)
 				cam.ChangeCamera (RCC_Camera.CameraMode.TPS);
-
-			}
 
 			if (UI)
 				UI.SetDisplayType(RCC_UIDashboardDisplay.DisplayType.Full);
@@ -71,8 +65,6 @@ public class RCC_Customization : MonoBehaviour {
 
 		if (!CheckVehicle (vehicle))
 			return;
-
-//		vehicle.isSleeping = false;
 
 	}
 
@@ -533,7 +525,7 @@ public class RCC_Customization : MonoBehaviour {
 		if (!CheckVehicle (vehicle))
 			return;
 
-		vehicle.maxspeed = Mathf.Clamp(targetValue, 10f, 300f);
+		vehicle.maxspeed = Mathf.Clamp(targetValue, 10f, 400f);
 
 		OverrideRCC (vehicle);
 

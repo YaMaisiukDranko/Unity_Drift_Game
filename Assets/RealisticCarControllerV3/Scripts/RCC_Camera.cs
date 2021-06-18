@@ -92,7 +92,8 @@ public class RCC_Camera : MonoBehaviour{
 	public bool TPSAutoFocus = true;								// Auto focus to player vehicle.
 	public bool TPSAutoReverse = true;								// Auto reverse when player vehicle is at reverse gear.
 	public bool TPSCollision = true;									// Collision effect when player vehicle crashes.
-	public Vector3 TPSOffset = new Vector3(0f, 0f, .25f);	// Camera will look at front wheel distance.
+	public Vector3 TPSOffset = new Vector3(0f, 0f, .25f);   // Camera will look at front wheel distance.
+	public Vector3 TPSStartRotation = new Vector3(0f, 0f, 0f);   // Camera will look at front wheel distance.
 
 	internal float targetFieldOfView = 60f;	// Camera will adapt its field of view to this target field of view. All field of views below this line will feed this value.
 
@@ -333,6 +334,16 @@ public class RCC_Camera : MonoBehaviour{
 
 			break;
 
+		case RCC_Settings.ControllerType.PS4:
+
+			if (Input.GetButtonDown (RCCSettings.PS4_changeCameraKB))
+				ChangeCamera ();
+
+			orbitX += Input.GetAxis (RCCSettings.PS4_mouseXInput) * orbitXSpeed * .01f;
+			orbitY -= Input.GetAxis (RCCSettings.PS4_mouseYInput) * orbitYSpeed * .01f;
+
+			break;
+
 		case RCC_Settings.ControllerType.LogitechSteeringWheel:
 			
 			#if BCG_LOGITECH
@@ -445,7 +456,7 @@ public class RCC_Camera : MonoBehaviour{
 		else
 			wantedRotation = playerCar.transform.rotation;
 
-		switch(RCCSettings.selectedControllerType){
+		switch (RCCSettings.selectedControllerType){
 
 		case RCC_Settings.ControllerType.Keyboard:
 
@@ -675,8 +686,11 @@ public class RCC_Camera : MonoBehaviour{
 		pivot.transform.localPosition = collisionPos;
 		pivot.transform.localRotation = collisionRot;
 
-		orbitX = 0f;
-		orbitY = 0f;
+		orbitX = TPSStartRotation.y;
+		orbitY = TPSStartRotation.x;
+
+		if (TPSStartRotation != Vector3.zero)
+			TPSStartRotation = Vector3.zero;
 
 		thisCam.orthographic = false;
 
@@ -783,8 +797,8 @@ public class RCC_Camera : MonoBehaviour{
 		while (timer > 0f) {
 			
 			timer -= Time.deltaTime;
-			TPSDistance = Mathf.Lerp(TPSDistance, RCC_GetBounds.MaxBoundsExtent (playerCar.transform) * 2.15f, Time.deltaTime);
-			TPSHeight = Mathf.Lerp (TPSHeight, RCC_GetBounds.MaxBoundsExtent (playerCar.transform) * .5f, Time.deltaTime);
+			TPSDistance = Mathf.Lerp(TPSDistance, RCC_GetBounds.MaxBoundsExtent (playerCar.transform) * 2.55f, Time.deltaTime);
+			TPSHeight = Mathf.Lerp (TPSHeight, RCC_GetBounds.MaxBoundsExtent (playerCar.transform) * .75f, Time.deltaTime);
 			yield return null;
 
 		}
@@ -798,8 +812,8 @@ public class RCC_Camera : MonoBehaviour{
 		while (timer > 0f) {
 
 			timer -= Time.deltaTime;
-			TPSDistance = Mathf.Lerp(TPSDistance, RCC_GetBounds.MaxBoundsExtent (bounds) * 2.15f, Time.deltaTime);
-			TPSHeight = Mathf.Lerp(TPSHeight, RCC_GetBounds.MaxBoundsExtent (bounds) * .5f, Time.deltaTime);
+			TPSDistance = Mathf.Lerp(TPSDistance, RCC_GetBounds.MaxBoundsExtent (bounds) * 2.55f, Time.deltaTime);
+			TPSHeight = Mathf.Lerp(TPSHeight, RCC_GetBounds.MaxBoundsExtent (bounds) * .75f, Time.deltaTime);
 			yield return null;
 
 		}
@@ -813,8 +827,8 @@ public class RCC_Camera : MonoBehaviour{
 		while (timer > 0f) {
 
 			timer -= Time.deltaTime;
-			TPSDistance = Mathf.Lerp(TPSDistance, ((RCC_GetBounds.MaxBoundsExtent (bounds1) * 2.15f) + (RCC_GetBounds.MaxBoundsExtent (bounds2) * 2.75f)), Time.deltaTime);
-			TPSHeight = Mathf.Lerp(TPSHeight, ((RCC_GetBounds.MaxBoundsExtent (bounds1) * .5f) + (RCC_GetBounds.MaxBoundsExtent (bounds2) * .6f)), Time.deltaTime);
+			TPSDistance = Mathf.Lerp(TPSDistance, ((RCC_GetBounds.MaxBoundsExtent (bounds1) * 2.55f) + (RCC_GetBounds.MaxBoundsExtent (bounds2) * 2.75f)), Time.deltaTime);
+			TPSHeight = Mathf.Lerp(TPSHeight, ((RCC_GetBounds.MaxBoundsExtent (bounds1) * .75f) + (RCC_GetBounds.MaxBoundsExtent (bounds2) * .6f)), Time.deltaTime);
 			yield return null;
 
 		}

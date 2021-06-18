@@ -61,15 +61,33 @@ public class RCC_WheelCollider : RCC_Core {
 		}
 	}
 
-	public WheelHit wheelHit;				//	Wheel Hit data.
-	public bool isGrounded = false;		//	Is wheel grounded?
-	
-	private RCC_CarControllerV3 carController;		//	Parent car controller.
-	private Rigidbody rigid;									//	Rigidbody of the car controller (Parent rigidbody).
+	// Car controller.
+	private RCC_CarControllerV3 _carController;
+	public RCC_CarControllerV3 carController{
+		get{
+			if(_carController == null)
+				_carController = GetComponentInParent<RCC_CarControllerV3>();
+			return _carController;
+		}
+	}
+
+	// Rigidbody of the vehicle.
+	private Rigidbody _rigid;
+	public Rigidbody rigid{
+		get{
+			if(_rigid == null)
+				_rigid = carController.gameObject.GetComponent<Rigidbody>();
+			return _rigid;
+		}
+	}
 
 	private List <RCC_WheelCollider> allWheelColliders = new List<RCC_WheelCollider>() ;		// All wheelcolliders attached to this vehicle.
 	public Transform wheelModel;		// Wheel model for animating and aligning.
 
+	public WheelHit wheelHit;				//	Wheel Hit data.
+	public bool isGrounded = false;		//	Is wheel grounded?
+
+	[Space()]
 	public bool canPower = false;		//	Can this wheel power?
 	[Range(-1f, 1f)]public float powerMultiplier = 1f;
 	public bool canSteer = false;		//	Can this wheel steer?
@@ -79,10 +97,19 @@ public class RCC_WheelCollider : RCC_Core {
 	public bool canHandbrake = false;		//	Can this wheel handbrake?
 	[Range(0f, 1f)]public float handbrakeMultiplier = 1f;
 
-	public float camber = 0f;		// Camber angle by Z axis.
+	[Space()]
+	public float width = .275f;	//	Width.
 	public float offset = .05f;		// Offset by X axis.
 
-	internal float wheelRPM2Speed = 0f;		// Wheel RPM to Speed.
+	internal float wheelRPM2Speed = 0f;     // Wheel RPM to Speed.
+
+	[Range(-5f, 5f)]public float camber = 0f;		// Camber angle.
+	[Range(-5f, 5f)]public float caster = 0f;		// Caster angle.
+	[Range(-5f, 5f)]public float toe = 0f;          	// Toe angle.
+
+	internal float damagedCamber = 0f;			// Damaged camber angle.
+	internal float damagedCaster = 0f;             // Damaged caster angle.
+	internal float damagedToe = 0f;                 // Damaged toe angle.
 
 	private RCC_GroundMaterials physicsMaterials{get{return RCCGroundMaterials;}}		// Getting instance of Configurable Ground Materials.
 	private RCC_GroundMaterials.GroundMaterialFrictions[] physicsFrictions{get{return RCCGroundMaterials.frictions;}}
@@ -131,10 +158,6 @@ public class RCC_WheelCollider : RCC_Core {
 	public float oldForce;
 
 	void Start (){
-
-		//	Getting essentials.
-		carController = GetComponentInParent<RCC_CarControllerV3>();
-		rigid = carController.GetComponent<Rigidbody> ();
 
 		// Getting all WheelColliders attached to this vehicle (Except this).
 		allWheelColliders = carController.GetComponentsInChildren<RCC_WheelCollider>().ToList();
@@ -316,7 +339,7 @@ public class RCC_WheelCollider : RCC_Core {
 		#region ESP.
 
 		// ESP System. All wheels have individual brakes. In case of loosing control of the vehicle, corresponding wheel will brake for gaining the control again.
-		if (carController.ESP) {
+		if (carController.ESP && carController.brakeInput < .5f) {
 
 			if (carController.handbrakeInput < .5f) {
 
@@ -375,11 +398,19 @@ public class RCC_WheelCollider : RCC_Core {
 		else
 			wheelModel.transform.position -= transform.right * offset;
 
-		// Adjusting camber angle by Z axis.
+        // Adjusting camber angle by Z axis.
+        if (transform.localPosition.x < 0f)
+            wheelModel.transform.RotateAround(wheelModel.transform.position, transform.forward, -camber - damagedCamber);
+        else
+            wheelModel.transform.RotateAround(wheelModel.transform.position, transform.forward, camber + damagedCamber);
+
+		// Adjusting caster angle by X axis.
 		if (transform.localPosition.x < 0f)
-			wheelModel.transform.RotateAround (wheelModel.transform.position, transform.forward, -camber);
+			wheelModel.transform.RotateAround(wheelModel.transform.position, transform.right, -caster - damagedCaster);
 		else
-			wheelModel.transform.RotateAround (wheelModel.transform.position, transform.forward, camber);
+			wheelModel.transform.RotateAround(wheelModel.transform.position, transform.right, caster + damagedCaster);
+
+		//transform.rotation = carController.transform.rotation * Quaternion.Euler(caster, toe, camber);
 
 	}
 
@@ -408,7 +439,7 @@ public class RCC_WheelCollider : RCC_Core {
 				Vector3 skidPoint = wheelHit.point + 2f * (rigid.velocity) * Time.deltaTime;
 
 				if (rigid.velocity.magnitude > 1f)
-					lastSkidmark = skidmarksManager.AddSkidMark (skidPoint, wheelHit.normal, totalSlip - physicsFrictions [groundIndex].slip, lastSkidmark, groundIndex);
+					lastSkidmark = skidmarksManager.AddSkidMark (skidPoint, wheelHit.normal, totalSlip - physicsFrictions [groundIndex].slip, lastSkidmark, groundIndex, width);
 				else
 					lastSkidmark = -1;
 
@@ -431,7 +462,7 @@ public class RCC_WheelCollider : RCC_Core {
 		float hbInput = carController.handbrakeInput;
 
 		if ((this == carController.RearLeftWheelCollider || this == carController.RearRightWheelCollider) && hbInput > .75f)
-			hbInput = .75f;
+			hbInput = .5f;
 		else
 			hbInput = 1;
 
@@ -668,6 +699,11 @@ public class RCC_WheelCollider : RCC_Core {
 			wheelCollider.steerAngle = 0f;
 
 		}
+
+		if (transform.localPosition.x < 0)
+			wheelCollider.steerAngle += toe + damagedToe;
+		else
+			wheelCollider.steerAngle -= toe + damagedToe;
 
 	}
 

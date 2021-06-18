@@ -34,15 +34,43 @@ public class RCC_InputManager : MonoBehaviour{
 
 		case RCC_Settings.ControllerType.XBox360One:
 
-			inputs.throttleInput = Input.GetAxis (RCC_Settings.Instance.Xbox_triggerRightInput);
-			inputs.brakeInput = Input.GetAxis (RCC_Settings.Instance.Xbox_triggerLeftInput);
-			inputs.steerInput = Input.GetAxis (RCC_Settings.Instance.Xbox_horizontalInput);
-			inputs.handbrakeInput = Input.GetButton (RCC_Settings.Instance.Xbox_handbrakeKB) ? 1f : 0f;
-			inputs.boostInput = Input.GetButton(RCC_Settings.Instance.Xbox_boostKB) ? 1f : 0f;
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.Xbox_triggerRightInput))
+				inputs.throttleInput = Input.GetAxis (RCC_Settings.Instance.Xbox_triggerRightInput);
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.Xbox_triggerLeftInput))
+				inputs.brakeInput = Input.GetAxis (RCC_Settings.Instance.Xbox_triggerLeftInput);
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.Xbox_horizontalInput))
+				inputs.steerInput = Input.GetAxis (RCC_Settings.Instance.Xbox_horizontalInput);
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.Xbox_handbrakeKB))
+				inputs.handbrakeInput = Input.GetButton (RCC_Settings.Instance.Xbox_handbrakeKB) ? 1f : 0f;
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.Xbox_boostKB))
+				inputs.boostInput = Input.GetButton(RCC_Settings.Instance.Xbox_boostKB) ? 1f : 0f;
 
 			break;
 
-		case RCC_Settings.ControllerType.Mobile:
+		case RCC_Settings.ControllerType.PS4:
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.PS4_triggerRightInput))
+				inputs.throttleInput = Mathf.Clamp01(Input.GetAxis(RCC_Settings.Instance.PS4_triggerRightInput));
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.PS4_triggerLeftInput))
+				inputs.brakeInput = Input.GetAxis(RCC_Settings.Instance.PS4_triggerLeftInput);
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.PS4_horizontalInput))
+				inputs.steerInput = Input.GetAxis(RCC_Settings.Instance.PS4_horizontalInput);
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.PS4_handbrakeKB))
+				inputs.handbrakeInput = Input.GetButton(RCC_Settings.Instance.PS4_handbrakeKB) ? 1f : 0f;
+
+			if(!string.IsNullOrEmpty(RCC_Settings.Instance.PS4_boostKB))
+				inputs.boostInput = Input.GetButton(RCC_Settings.Instance.PS4_boostKB) ? 1f : 0f;
+
+			break;
+
+			case RCC_Settings.ControllerType.Mobile:
 
 			RCC_MobileButtons mobileInput = RCC_MobileButtons.Instance;
 
@@ -76,25 +104,24 @@ public class RCC_InputManager : MonoBehaviour{
 
 			break;
 
+		case RCC_Settings.ControllerType.Custom:
+
+			// You can use your own inputs with Custom controller type here.
+
+//			inputs.throttleInput = "yourValue";
+//			inputs.brakeInput = "yourValue";
+//			inputs.steerInput = "yourValue";
+//			inputs.boostInput = "yourValue";
+//			inputs.clutchInput = "yourValue";
+//			inputs.handbrakeInput = "yourValue";
+
+			break;
+
 		}
 
 		return inputs;
 
 	}
-
-//	public static bool GetKey(KeyCode){
-//
-//		switch (RCC_Settings.Instance.controllerType) {
-//
-//		case RCC_Settings.ControllerType.Keyboard:
-//
-//
-//
-//			break;
-//
-//		}
-//
-//	}
 
 	public static bool GetKeyDown(KeyCode keyCode){
 
@@ -149,15 +176,5 @@ public class RCC_InputManager : MonoBehaviour{
 		return false;
 
 	}
-
-//	public void GetMobileInputs(RCC_Inputs inputs){
-//
-//		throttleInput = inputs.throttleInput;
-//		brakeInput = inputs.brakeInput;
-//		steerInput = inputs.steerInput;
-//		handbrakeInput = inputs.handbrakeInput;
-//		boostInput = inputs.boostInput;
-//
-//	}
 
 }

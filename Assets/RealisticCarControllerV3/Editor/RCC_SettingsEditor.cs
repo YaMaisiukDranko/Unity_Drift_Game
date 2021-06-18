@@ -1,7 +1,7 @@
 ﻿//----------------------------------------------
 //            Realistic Car Controller
 //
-// Copyright © 2014 - 2019 BoneCracker Games
+// Copyright © 2014 - 2020 BoneCracker Games
 // http://www.bonecrackergames.com
 // Buğra Özdoğanlar
 //
@@ -152,7 +152,7 @@ public class RCC_SettingsEditor : Editor {
 		if(foldControllerSettings){
 			
 			List<string> controllerTypeStrings =  new List<string>();
-			controllerTypeStrings.Add("Keyboard");	controllerTypeStrings.Add("Mobile");	controllerTypeStrings.Add("XBox");	controllerTypeStrings.Add("Logitech Steering Wheel");	controllerTypeStrings.Add("Custom");
+			controllerTypeStrings.Add("Keyboard");	controllerTypeStrings.Add("Mobile");	controllerTypeStrings.Add("XBox");	 controllerTypeStrings.Add("PS4");	 controllerTypeStrings.Add("Logitech Steering Wheel");	 controllerTypeStrings.Add("Custom");
 			EditorGUILayout.BeginVertical (GUI.skin.box);
 
 			GUI.color = new Color(.5f, 1f, 1f, 1f);
@@ -276,7 +276,46 @@ public class RCC_SettingsEditor : Editor {
 			
 		}
 
-			if(RCCSettingsAsset.controllerSelectedIndex == 3){
+			if (RCCSettingsAsset.controllerSelectedIndex == 3){
+
+				RCCSettingsAsset.controllerType = RCC_Settings.ControllerType.PS4;
+
+				EditorGUILayout.BeginVertical(GUI.skin.box);
+
+				GUILayout.Label("PS4 Settings", EditorStyles.boldLabel);
+
+				GUI.color = new Color(.75f, 1f, .75f);
+				EditorGUILayout.HelpBox("In this mode, inputs will be received from PS4 controllers.", MessageType.Info);
+				GUI.color = originalGUIColor;
+
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_triggerRightInput"), new GUIContent("Gas Input Axis"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_triggerLeftInput"), new GUIContent("Brake/Reverse Input Axis"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_horizontalInput"), new GUIContent("Steering Input Axis"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_mouseXInput"), new GUIContent("Mouse X Input Axis"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_mouseYInput"), new GUIContent("Mouse Y Input Axis"));
+
+				GUI.color = new Color(.75f, 1f, .75f);
+				EditorGUILayout.HelpBox("You can edit your vertical and horizontal input axis in Edit --> Project Settings --> Input.", MessageType.Info);
+				GUI.color = originalGUIColor;
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_handbrakeKB"), new GUIContent("Handbrake"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_startEngineKB"), new GUIContent("Start / Stop Engine Key"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_lowBeamHeadlightsKB"), new GUIContent("Low Beam Headlights"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_highBeamHeadlightsKB"), new GUIContent("High Beam Headlights"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_changeCameraKB"), new GUIContent("Change Camera"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_indicatorKB"), new GUIContent("Indicator Axis"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_hazardIndicatorKB"), new GUIContent("Indicator Hazard"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_shiftGearUp"), new GUIContent("Gear Shift Up"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_shiftGearDown"), new GUIContent("Gear Shift Down"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_boostKB"), new GUIContent("Boost / NOS"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_lookBackKB"), new GUIContent("Look Back"));
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("PS4_trailerAttachDetach"), new GUIContent("Trailer Attach/Detach"));
+				EditorGUILayout.Space();
+
+				EditorGUILayout.EndVertical();
+
+			}
+
+			if (RCCSettingsAsset.controllerSelectedIndex == 4){
 
 				EditorGUILayout.BeginVertical (GUI.skin.box);
 
@@ -313,7 +352,7 @@ public class RCC_SettingsEditor : Editor {
 
 			}
 
-			if(RCCSettingsAsset.controllerSelectedIndex == 4){
+			if(RCCSettingsAsset.controllerSelectedIndex == 5){
 
 				EditorGUILayout.BeginVertical (GUI.skin.box);
 
@@ -323,8 +362,9 @@ public class RCC_SettingsEditor : Editor {
 
 				GUI.color = new Color(.75f, 1f, .75f);
 				EditorGUILayout.HelpBox("In this mode, RCC won't receive these inputs from keyboard or UI buttons. You need to feed these inputs in your own script.", MessageType.Info);
+				EditorGUILayout.HelpBox("All inputs are processed by RCC_InputManager script. Open the script and you can see all controller types here. Scroll down to ''Custom'' case and use your own values here.", MessageType.Info);
 				EditorGUILayout.Space();
-				EditorGUILayout.HelpBox("RCC uses these inputs; \n  \n    gasInput = Clamped 0f - 1f.  \n    brakeInput = Clamped 0f - 1f.  \n    steerInput = Clamped -1f - 1f. \n    clutchInput = Clamped 0f - 1f. \n    handbrakeInput = Clamped 0f - 1f. \n    boostInput = Clamped 0f - 1f.", MessageType.Info);
+				EditorGUILayout.HelpBox("RCC uses these inputs; \n  \n    throttleInput = Clamped 0f - 1f.  \n    brakeInput = Clamped 0f - 1f.  \n    steerInput = Clamped -1f - 1f. \n    clutchInput = Clamped 0f - 1f. \n    handbrakeInput = Clamped 0f - 1f. \n    boostInput = Clamped 0f - 1f.", MessageType.Info);
 				EditorGUILayout.Space();
 				GUI.color = originalGUIColor;
 
@@ -378,6 +418,7 @@ public class RCC_SettingsEditor : Editor {
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("units"), new GUIContent("Units"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("useVR"), new GUIContent("Use VR / XR"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("useAutomaticGear"), new GUIContent("Use Automatic Gear"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("useAutomaticClutch"), new GUIContent("Use Automatic Clutch"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("runEngineAtAwake"), new GUIContent("Engines Are Running At Awake"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("autoReverse"), new GUIContent("Auto Reverse"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("autoReset"), new GUIContent("Auto Reset"));

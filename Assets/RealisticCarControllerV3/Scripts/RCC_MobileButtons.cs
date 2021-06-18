@@ -195,10 +195,10 @@ public class RCC_MobileButtons : RCC_Core {
 
 		case RCC_Settings.MobileController.Gyro:
 
-			gyroInput = Input.acceleration.x * RCCSettings.gyroSensitivity;
+			gyroInput = Mathf.Lerp(gyroInput, Input.acceleration.x * RCCSettings.gyroSensitivity, Time.deltaTime * 5f);
 			brakeButton.transform.position = leftButton.transform.position;
 
-			if(steeringWheel.gameObject.activeInHierarchy)
+			if(steeringWheel && steeringWheel.gameObject.activeInHierarchy)
 				steeringWheel.gameObject.SetActive(false);
 
 			if(NOSButton && NOSButton.gameObject.activeInHierarchy != canUseNos)
@@ -219,7 +219,7 @@ public class RCC_MobileButtons : RCC_Core {
 
 			gyroInput = 0f;
 
-			if(!steeringWheel.gameObject.activeInHierarchy){
+			if(steeringWheel && !steeringWheel.gameObject.activeInHierarchy){
 				steeringWheel.gameObject.SetActive(true);
 				brakeButton.transform.position = orgBrakeButtonPos;
 			}

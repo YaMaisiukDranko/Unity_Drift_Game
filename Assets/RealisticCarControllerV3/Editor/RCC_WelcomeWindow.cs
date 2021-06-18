@@ -1,4 +1,13 @@
-﻿using System;
+﻿//----------------------------------------------
+//            Realistic Car Controller
+//
+// Copyright © 2014 - 2020 BoneCracker Games
+// http://www.bonecrackergames.com
+// Buğra Özdoğanlar
+//
+//----------------------------------------------
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +17,6 @@ using UnityEditor.SceneManagement;
 [InitializeOnLoad]
 public class RCC_WelcomeWindow : EditorWindow{
 
-	/// <summary>
-	/// ToolBar Class
-	/// </summary>
 	public class ToolBar{
 		
 		public string title;
@@ -35,7 +41,7 @@ public class RCC_WelcomeWindow : EditorWindow{
 	}
 
 	/// <summary>
-	/// Index of selected <seealso cref="toolBars"/>
+	/// Index of selected toolbar.
 	/// </summary>
 	public int toolBarIndex = 0;
 
@@ -120,7 +126,6 @@ public class RCC_WelcomeWindow : EditorWindow{
 		GUILayout.EndHorizontal();
 		EditorGUILayout.Separator ();
 
-//		EditorGUILayout.HelpBox("Before using Realistic Car Controller, please create a new layer ''RCC'' from Tags & Layers. And be sure RCC layer is selected in RCC Settings. Also you can import it too. Importing will overwrite your current Tags & Layers and Input Manager!", MessageType.Warning, true);
 		EditorGUILayout.HelpBox("Realistic Car Controller needs configured Tags & Layers and Input Manager in your Project Settings. Importing them will overwrite your Project Settings!", MessageType.Warning, true);
 		EditorGUILayout.Separator ();
 
@@ -198,7 +203,7 @@ public class RCC_WelcomeWindow : EditorWindow{
 
 		bool photonInstalled = false;
 
-		#if PHOTON_UNITY_NETWORKING
+		#if BCG_PHOTON && PHOTON_UNITY_NETWORKING
 		photonInstalled = true;
 		#endif
 
@@ -309,7 +314,7 @@ public class RCC_WelcomeWindow : EditorWindow{
 
 		bool photonInstalled = false;
 
-		#if PHOTON_UNITY_NETWORKING
+		#if BCG_PHOTON && PHOTON_UNITY_NETWORKING
 		photonInstalled = true;
 		#endif
 

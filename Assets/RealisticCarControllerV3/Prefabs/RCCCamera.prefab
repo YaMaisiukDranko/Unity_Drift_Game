@@ -111,7 +111,8 @@ MonoBehaviour:
   TPSAutoReverse: 1
   TPSCollision: 1
   TPSOffset: {x: 0, y: 0, z: 0.25}
-  TPSMinimumFOV: 50
+  TPSStartRotation: {x: 0, y: 0, z: 0}
+  TPSMinimumFOV: 45
   TPSMaximumFOV: 70
   hoodCameraFOV: 60
   wheelCameraFOV: 60
@@ -180,7 +181,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.15
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0

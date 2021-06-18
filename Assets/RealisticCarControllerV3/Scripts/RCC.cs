@@ -147,7 +147,7 @@ public class RCC : MonoBehaviour {
 	public static void SetBehavior(int behaviorIndex){
 
 		RCC_SceneManager.SetBehavior (behaviorIndex);
-		Debug.Log ("Mobile Controller has been changed to " + behaviorIndex.ToString());
+		Debug.Log ("Behavior has been changed to " + behaviorIndex.ToString());
 
 	}
 
@@ -171,13 +171,25 @@ public class RCC : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Transport the specified position and rotation.
+	/// Transport player vehicle the specified position and rotation.
 	/// </summary>
 	/// <param name="position">Position.</param>
 	/// <param name="rotation">Rotation.</param>
 	public static void Transport(Vector3 position, Quaternion rotation){
 
 		RCC_SceneManager.Instance.Transport (position, rotation);
+
+	}
+
+	/// <summary>
+	/// Transport the target vehicle to specified position and rotation.
+	/// </summary>
+	/// <param name="vehicle"></param>
+	/// <param name="position"></param>
+	/// <param name="rotation"></param>
+	public static void Transport(RCC_CarControllerV3 vehicle, Vector3 position, Quaternion rotation) {
+
+		RCC_SceneManager.Instance.Transport(vehicle, position, rotation);
 
 	}
 
